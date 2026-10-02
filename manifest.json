@@ -1,0 +1,27 @@
+{
+  "name": "Kardam — Small steps. A little more calm.",
+  "short_name": "Kardam",
+  "description": "A private, on-device mental health companion for Indian users. Mood check-ins, journal, peer connect, sanctuary practices, and emergency support.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFBF5",
+  "theme_color": "#FFFBF5",
+  "categories": ["health", "lifestyle"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

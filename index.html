@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
+<meta name="theme-color" content="#FFFBF5"/>
+<meta name="description" content="Kardam — A private mental health companion. Small steps. A little more calm."/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Kardam"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="assets/icon-192.png"/>
+<link rel="icon" type="image/png" href="assets/icon-192.png"/>
+<title>Kardam — Small steps. A little more calm.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest" defer></script>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/post-pin.css"/>
+<link rel="stylesheet" href="css/registration-flow.css"/>
+<link rel="stylesheet" href="css/daywell-polish.css"/>
+<link rel="stylesheet" href="css/main-reference-polish.css"/>
+<link rel="stylesheet" href="css/language-and-profile-polish.css"/>
+<link rel="stylesheet" href="css/calm-glass.css"/>
+</head>
+<body>
+<div class="app-shell">
+<div class="phone" id="phone">
+
+<!-- ============ STATUS BAR ============ -->
+<div class="status">
+  <span id="time">9:41</span>
+  <span style="display:flex;gap:6px;align-items:center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+    <span style="width:22px;height:11px;border-radius:3px;border:1.5px solid #111;display:inline-block;position:relative">
+      <span style="position:absolute;left:2px;top:2px;bottom:2px;width:14px;background:#111;border-radius:1.5px"></span>
+    </span>
+  </span>
+</div>
+
+<!-- ============ SPLASH + GET STARTED ============ -->
+<div class="splash" id="splash">
+  <!-- Layer 1: Logo animation -->
+  <div id="splashLogoLayer" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <div class="blob splash-blob" style="width:180px;height:180px">
+      <div class="ear ear-l"></div>
+      <div class="ear ear-r"></div>
+      <div class="face">
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="arm l"></div>
+      <div class="arm r"></div>
+    </div>
+    <div class="splash-wordmark">Kardam</div>
+    <div class="splash-tag">Small steps. A little more calm.</div>
+    <div class="splash-loader"><i></i><i></i><i></i></div>
+  </div>
+
+  <!-- Layer 2: Get Started (revealed after logo animation) -->
+  <div id="splashGetStarted" style="display:none;flex-direction:column;align-items:center;justify-content:center;padding:0 32px;text-align:center">
+    <button class="lang-corner-btn" onclick="window.__kardamOpenLangModal && window.__kardamOpenLangModal()" aria-label="Change language">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="langCornerLabel">EN</span>
+    </button>
+    <div class="blob" style="width:140px;height:140px;animation:blobFloat 4s ease-in-out infinite">
+      <div class="ear ear-l"></div>
+      <div class="ear ear-r"></div>
+      <div class="face">
+        <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="arm l"></div>
+      <div class="arm r"></div>
+    </div>
+    <h1 class="h1" style="margin-top:24px;font-size:28px;letter-spacing:-.01em">Your calm,<br/>your space.</h1>
+    <p class="muted" style="margin-top:12px;font-size:14px;line-height:1.5;max-width:240px">A private companion for your mental well-being.</p>
+    <button class="pill pill-dark w-full" style="margin-top:28px" onclick="window.__kardamOpenAuth && window.__kardamOpenAuth()">Get Started</button>
+    <p class="muted" style="margin-top:14px;font-size:11px">Private by design · Your data never leaves this device</p>
+  </div>
+</div>
+
+<!-- ============ LANGUAGE MODAL ============ -->
+<div id="langModal" class="modal-overlay" onclick="if(event.target===this)window.__kardamCloseLangModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <h3>Choose language</h3>
+      <button class="icon-btn" onclick="window.__kardamCloseLangModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <p class="muted" style="margin-bottom:16px">You can change this anytime in Profile</p>
+    <div id="langModalList"></div>
+    <button class="pill pill-dark w-full" style="margin-top:14px;height:48px;min-height:48px" onclick="window.__kardamSaveLangModal()">Continue</button>
+  </div>
+</div>
+
+<!-- ============ AUTH VIEW (Login / Register) ============ -->
+<div id="view-auth" class="view">
+  <div style="padding:28px 24px 10px;position:relative">
+    <button class="lang-corner-btn-auth" onclick="window.__kardamOpenLangModal && window.__kardamOpenLangModal()" aria-label="Change language">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </button>
+    <div class="logo" style="margin-bottom:28px"><div class="logo-mark">k</div>KARDAM</div>
+    <h1 class="h1" id="authHeading" style="font-size:28px">Welcome back</h1>
+    <p class="muted" id="authSubheading" style="margin-top:6px">Sign in to your private space</p>
+  </div>
+
+  <!-- Toggle: Login / Register -->
+  <div style="padding:18px 24px 0">
+    <div class="auth-toggle">
+      <button class="auth-toggle-btn active" id="toggleLogin" onclick="window.__kardamSwitchAuth('login')">Login</button>
+      <button class="auth-toggle-btn" id="toggleRegister" onclick="window.__kardamSwitchAuth('register')">Register</button>
+    </div>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div id="authLoginForm" style="padding:20px 24px 0">
+    <div class="auth-field">
+      <label class="auth-label">Mobile Number</label>
+      <div class="auth-input-wrap">
+        <span class="auth-prefix">+91</span>
+        <input type="tel" id="loginMobile" class="auth-input" placeholder="98XXXXXXXX" inputmode="numeric" autocomplete="tel-national" maxlength="16"/>
+      </div>
+    </div>
+    <div class="auth-field">
+      <label class="auth-label">Password</label>
+      <div class="auth-input-wrap auth-pw-wrap">
+        <input type="password" id="loginPassword" class="auth-input" placeholder="Enter your password" style="border:0;background:transparent;height:52px"/>
+        <button type="button" class="auth-pw-toggle" onclick="window.__kardamTogglePw('loginPassword', this)" aria-label="Toggle password visibility">
+          <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+        </button>
+      </div>
+    </div>
+    <div style="text-align:right;margin-top:4px;margin-bottom:18px">
+      <button class="auth-link" onclick="window.__kardamOpenForgot()">Forgot Password?</button>
+    </div>
+    <button class="pill pill-dark w-full" onclick="window.__kardamDoLogin()">Login</button>
+
+    <div class="auth-divider"><span>or continue with</span></div>
+
+    <div style="display:flex;gap:10px">
+      <button class="auth-social" onclick="window.__kardamSocialLogin('Google')">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Google
+      </button>
+      <button class="auth-social auth-social-x" aria-label="Continue with X" title="Continue with X" onclick="window.__kardamSocialLogin('X')">
+        <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true"><path d="M18.9 2h3.2l-7 8 8.2 12h-6.5l-5.1-7.5L5.1 22H1.9l7.5-8.6L1.2 2h6.7l4.6 6.9L18.9 2Zm-1.1 18h1.8L7.7 3.9H5.8L17.8 20Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <p class="auth-footer">New user? <button class="auth-link-inline" onclick="window.__kardamSwitchAuth('register')">Register now</button></p>
+  </div>
+
+  <!-- REGISTER FORM (hidden by default) -->
+  <div id="authRegisterForm" style="padding:20px 24px 0;display:none">
+    <div class="auth-field">
+      <label class="auth-label">Name</label>
+      <input type="text" id="regName" class="auth-input" placeholder="What should we call you?"/>
+    </div>
+    <div class="auth-field">
+      <label class="auth-label">Mobile Number</label>
+      <div class="auth-input-wrap">
+        <span class="auth-prefix">+91</span>
+        <input type="tel" id="regMobile" class="auth-input" placeholder="98XXXXXXXX" inputmode="numeric" autocomplete="tel-national" maxlength="16"/>
+      </div>
+    </div>
+    <div class="auth-field">
+      <label class="auth-label">Password</label>
+      <div class="auth-input-wrap auth-pw-wrap">
+        <input type="password" id="regPassword" class="auth-input" placeholder="At least 6 characters" style="border:0;background:transparent;height:52px"/>
+        <button type="button" class="auth-pw-toggle" onclick="window.__kardamTogglePw('regPassword', this)" aria-label="Toggle password visibility">
+          <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="pill pill-dark w-full" style="margin-top:18px" onclick="console.log('[Button] Create Account clicked'); window.__kardamDoRegister && window.__kardamDoRegister()">Create Account</button>
+
+    <div class="auth-divider"><span>or continue with</span></div>
+
+    <div style="display:flex;gap:10px">
+      <button class="auth-social" onclick="window.__kardamSocialLogin('Google')">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Google
+      </button>
+      <button class="auth-social auth-social-x" aria-label="Continue with X" title="Continue with X" onclick="window.__kardamSocialLogin('X')">
+        <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true"><path d="M18.9 2h3.2l-7 8 8.2 12h-6.5l-5.1-7.5L5.1 22H1.9l7.5-8.6L1.2 2h6.7l4.6 6.9L18.9 2Zm-1.1 18h1.8L7.7 3.9H5.8L17.8 20Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <p class="auth-footer">Already have an account? <button class="auth-link-inline" onclick="window.__kardamSwitchAuth('login')">Login</button></p>
+  </div>
+
+  <p class="muted text-center" style="padding:18px 24px 24px;font-size:11px">Private by design · On-device only · No data uploaded</p>
+</div>
+
+<!-- ============ FORGOT PASSWORD MODAL ============ -->
+<div id="forgotModal" class="modal-overlay" onclick="if(event.target===this)window.__kardamCloseForgot()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <h3>Reset Password</h3>
+    <p class="m-sub">Enter the mobile number linked to your account. A reset link would be sent in a real app.</p>
+    <div class="auth-field">
+      <label class="auth-label">Mobile Number</label>
+      <div class="auth-input-wrap">
+        <span class="auth-prefix">+91</span>
+        <input type="tel" id="forgotMobile" class="auth-input" placeholder="98XXXXXXXX" inputmode="numeric" maxlength="10"/>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="pill pill-light" style="flex:1" onclick="window.__kardamCloseForgot()">Cancel</button>
+      <button class="pill pill-dark" style="flex:1.3" onclick="window.__kardamSubmitForgot()">Send Reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ONBOARDING: NAME ============ -->
+<div id="view-name" class="view">
+  <div class="onb-head">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <button class="icon-btn" onclick="window.__kardamGoAuth && window.__kardamGoAuth()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+    </div>
+    <h2 class="h2" style="margin-top:18px">What should we call you?</h2>
+    <p class="muted" style="margin-top:8px">A name you're comfortable with.</p>
+  </div>
+  <div style="padding:22px">
+    <input type="text" id="inp-name" placeholder="Your preferred name" style="width:100%;padding:16px 18px;border-radius:18px;border:1.5px solid var(--line);background:var(--card);font-size:16px;font-weight:600"/>
+  </div>
+  <div style="padding:0 20px 24px">
+    <button class="pill pill-dark w-full" onclick="window.__kardamSaveName && window.__kardamSaveName()">Continue</button>
+  </div>
+</div>
+
+<!-- ============ ONBOARDING: TRUSTED CONTACT ============ -->
+<div id="view-trusted" class="view">
+  <div class="onb-head">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <button class="icon-btn" onclick="window.showView('view-name')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <span class="muted" style="font-weight:700">Step 1 of 2</span>
+    </div>
+    <h2 class="h2" style="margin-top:22px;font-size:24px">Trusted Contact</h2>
+    <p class="muted" style="margin-top:6px;font-size:13px;line-height:1.4">Someone you can reach when needed.</p>
+  </div>
+  <div class="progress"><i style="width:50%"></i></div>
+
+  <div style="padding:14px 20px 20px">
+    <div class="trusted-form-card">
+      <div class="tf-card-kicker"><span>YOUR SUPPORT CIRCLE</span><span>OPTIONAL</span></div>
+      <div class="tf-icon" style="background:var(--sage);color:var(--sage-deep)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <div class="tf-fields">
+        <div class="tf-field">
+          <label class="tf-label">Name</label>
+          <input type="text" id="inp-cname" class="tf-input" placeholder="Who is this person?"/>
+        </div>
+        <div class="tf-field">
+          <label class="tf-label">Relation</label>
+          <input type="text" id="inp-crel" class="tf-input" placeholder="Brother, Friend, Parent..."/>
+        </div>
+        <div class="tf-field">
+          <label class="tf-label">Phone</label>
+          <div class="tf-input-wrap">
+            <span class="tf-prefix">+91</span>
+            <input type="tel" id="inp-cphone" class="tf-input" placeholder="98XXXXXXXX" inputmode="numeric" maxlength="10"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="tf-skip" onclick="window.__kardamSkipTrusted && window.__kardamSkipTrusted()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      Skip for now
+    </button>
+
+    <button class="pill pill-dark w-full" style="margin-top:14px" onclick="window.__kardamSaveTrusted && window.__kardamSaveTrusted()">Continue</button>
+  </div>
+</div>
+
+<!-- ============ ONBOARDING: PIN SETUP ============ -->
+<div id="view-pinsetup" class="view">
+  <div class="onb-head">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <button class="icon-btn" onclick="window.showView('view-trusted')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <span class="muted" style="font-weight:700">Step 2 of 2</span>
+    </div>
+    <h2 class="h2" style="margin-top:18px" id="t-pinTitle">Set your Main PIN</h2>
+    <p class="muted" style="margin-top:8px" id="t-pinSub">You'll use this to open your private Kardam space. Only stored on this device.</p>
+  </div>
+  <div class="progress"><i style="width:100%"></i></div>
+  <div class="pin-screen">
+    <div class="pin-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <div class="pin-dots" id="pinDots"></div>
+    <div class="pin-label" id="pinLabel">Enter 4 digits</div>
+    <div class="pin-error" id="pinError" style="display:none"></div>
+    <div class="numpad" id="pinPad"></div>
+    <div style="padding:0 20px;width:100%">
+      <button class="pill pill-outline-dark w-full" onclick="window.__kardamClearPin && window.__kardamClearPin()">Clear</button>
+      <p class="pin-sub" id="pinSubNote">No attempt limit. If you forget, you can reset from Profile settings.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LOGIN VIEW ============ -->
+<div id="view-login" class="view">
+  <div style="padding:28px 22px 10px">
+    <button class="icon-btn" onclick="window.__kardamGoAuth && window.__kardamGoAuth()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <h1 class="h1" style="margin-top:18px">Enter your PIN</h1>
+    <p class="muted" style="margin-top:8px">Enter your PIN to continue to your space.</p>
+  </div>
+  <div class="pin-screen" style="padding-top:10px">
+    <div class="pin-icon" style="background:var(--sage)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <div class="pin-dots" id="loginDots"></div>
+    <div class="pin-label">Enter your 4-digit PIN</div>
+    <div class="numpad" id="loginPad"></div>
+    <div style="padding:0 20px;width:100%">
+      <button class="pill pill-outline-dark w-full" onclick="window.__kardamClearLogin && window.__kardamClearLogin()">Clear</button>
+      <p class="pin-sub" style="margin-top:10px">Wrong PIN? Try again — no attempt limit. Forgot? Reset in Settings.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REGISTRATION COMPLETE ============ -->
+<div id="view-registration-done" class="view registration-done-view">
+  <div class="registration-done-card">
+    <div class="registration-illustration" aria-hidden="true">
+      <svg class="registration-sprout" viewBox="0 0 180 140" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="90" cy="74" r="59" fill="#E8F2E8" stroke="none"/>
+        <circle cx="90" cy="74" r="45" stroke="#C8DEC9" stroke-width="1.5" stroke-dasharray="2 6"/>
+        <path d="M90 91V54" stroke="#739576" stroke-width="3"/>
+        <path d="M89 70c-20 0-28-12-27-26 16 0 27 7 27 26Z" fill="#BBD8BE" stroke="#739576" stroke-width="1.5"/>
+        <path d="M91 61c2-17 14-24 29-20-2 15-12 23-29 20Z" fill="#DCCFF0" stroke="#8C78A8" stroke-width="1.5"/>
+        <path d="M74 99c8-5 24-5 32 0" stroke="#739576" stroke-width="2"/>
+        <path d="M34 51l3 5 5 1-5 3-1 5-3-5-5-1 5-3 1-5Z" fill="#EBCB9F" stroke="none"/>
+        <circle cx="139" cy="94" r="4" fill="#E8BFCB" stroke="none"/>
+        <circle cx="130" cy="36" r="3" fill="#EBCB9F" stroke="none"/>
+      </svg>
+      <div class="registration-done-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>
+      </div>
+    </div>
+    <p class="registration-kicker">KARDAM</p>
+    <h1>Registration complete</h1>
+    <p class="registration-copy">You're all set<span id="registrationSuccessName"></span>. Your private space is ready on this device.</p>
+    <button class="pill pill-dark w-full" onclick="window.__kardamStartPostRegister && window.__kardamStartPostRegister()">Continue</button>
+    <p class="registration-footnote">Next, enter your PIN to open your space.</p>
+  </div>
+</div>
+
+<!-- ============ MAIN APP VIEW ============ -->
+<div id="view-main" class="view no-pad"><div id="mainInterfaceMount"></div></div>
+
+<!-- ============ DURESS VIEW (Harmless Wellness App) ============ -->
+<div id="view-duress" class="view no-pad">
+  <!-- Content will be injected by duress-interface.js -->
+</div>
+<!-- ============ CHAT OVERLAY ============ -->
+<div id="chatOverlay" class="overlay">
+  <div class="chat-sheet">
+    <div class="chat-head">
+      <div class="chat-head-info">
+        <button class="icon-btn" style="width:36px;height:36px" onclick="window.__kardamCloseChat && window.__kardamCloseChat()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <div class="chat-head-av">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg>
+        </div>
+        <div class="chat-head-text">
+          <b>Kardam <span class="badge">Private</span></b>
+          <span>Mock responses · Not medical advice</span>
+        </div>
+      </div>
+    </div>
+    <div class="disclaimer">Your messages stay on this device. Not shared, not used for training. If you need urgent support, contact your trusted person or a helpline.</div>
+    <div class="suggest-cards" id="chatSuggestions"></div>
+    <div class="chat-msgs" id="chatMsgs"></div>
+    <div class="suggest-cards" id="chatTools" style="border-top:1px solid var(--line);padding-top:10px"></div>
+    <div class="chat-input">
+      <input id="chatInput" placeholder="Type a gentle note..." onkeydown="if(event.key==='Enter')window.__kardamSendChat && window.__kardamSendChat()"/>
+      <button onclick="window.__kardamSendChat && window.__kardamSendChat()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EMERGENCY MODAL ============ -->
+<div id="emergencyModal" class="modal-overlay" onclick="if(event.target===this)window.__kardamCloseEmergency()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="emerg-head">
+      <div class="e-ico">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      </div>
+      <div>
+        <b>You're not alone.</b>
+        <span>Reach out anytime · All actions stay on this device</span>
+      </div>
+      <button class="icon-btn" style="margin-left:auto" onclick="window.__kardamCloseEmergency()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="emerg-note" style="background:var(--peach);border-color:#F0C9A6;margin:0 0 14px">
+      <b style="color:var(--ink);display:block;margin-bottom:4px">In a real crisis</b>
+      Please call your trusted contact or a helpline below. This app is a companion, not a replacement for professional help.
+    </div>
+    <h4 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:10px 0">Free Helplines</h4>
+    <div id="helplineList"></div>
+    <h4 style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:14px 0 10px">Quick Actions</h4>
+    <div id="emergencyTrusted" style="display:flex;gap:10px;margin-bottom:10px">
+      <button class="pill pill-dark" style="flex:1;height:44px;min-height:44px;font-size:13px" onclick="window.__kardamCallHelpline && window.__kardamCallHelpline('Trusted Contact','')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="margin-right:6px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span id="eTrustedName">Call trusted contact</span>
+      </button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <button class="pill pill-lav" style="height:44px;min-height:44px;font-size:13px" onclick="window.__kardamRequestCallback && window.__kardamRequestCallback()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Request callback
+      </button>
+      <button class="pill pill-blue" style="height:44px;min-height:44px;font-size:13px" onclick="window.__kardamAlertCHW && window.__kardamAlertCHW()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="margin-right:4px"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Alert local CHW
+      </button>
+    </div>
+    <button class="pill pill-danger w-full" style="height:48px;min-height:48px;font-weight:700" onclick="window.__kardamSilentAlert && window.__kardamSilentAlert()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="margin-right:6px"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      Silent SOS — alert without sound
+    </button>
+    <div class="emerg-note" style="margin-top:12px">
+      <b style="display:block;margin-bottom:4px">How it works</b>
+      In a real deployment these actions would dial helplines, send SMS to trusted contacts, or trigger local emergency services. All data stays on this device. Nothing is uploaded.
+    </div>
+  </div>
+</div>
+
+<!-- ============ PEER CONNECT MODAL ============ -->
+<div id="peerModal" class="modal-overlay" onclick="if(event.target===this)window.__kardamClosePeer()">
+  <div class="modal-sheet" style="max-height:88%">
+    <div class="modal-handle"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div>
+        <h3>Peer Connect</h3>
+        <div class="m-sub">Real people who listen, share, or guide</div>
+      </div>
+      <button class="icon-btn" onclick="window.__kardamClosePeer()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <div id="peerListView">
+      <div class="peer-tabs">
+        <button class="peer-tab active" data-filter="all" onclick="window.__kardamRenderPeerList('all')">All</button>
+        <button class="peer-tab" data-filter="listener" onclick="window.__kardamRenderPeerList('listener')">Listeners</button>
+        <button class="peer-tab" data-filter="sharer" onclick="window.__kardamRenderPeerList('sharer')">Sharers</button>
+        <button class="peer-tab" data-filter="guide" onclick="window.__kardamRenderPeerList('guide')">Guides</button>
+      </div>
+      <div id="peerList"></div>
+    </div>
+
+    <div id="peerDetailView" style="display:none">
+      <button class="pill pill-light" style="height:38px;min-height:38px;font-size:13px;margin-bottom:14px" onclick="window.__kardamBackToPeerList()">← Back</button>
+      <div class="peer-card">
+        <div class="peer-top">
+          <div class="peer-av" id="peerDetailAv" style="background:var(--peach)">AS</div>
+          <div class="peer-info">
+            <div class="p-name" id="peerDetailName">Name <span class="peer-role" id="peerDetailRole">Listener</span></div>
+            <div class="p-status"><span class="dot-online"></span>Online now</div>
+          </div>
+        </div>
+        <div class="peer-desc" id="peerDetailDesc">Description here.</div>
+        <div id="peerDetailMeta" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"></div>
+        <div class="peer-actions" style="margin-top:14px">
+          <button class="pill pill-dark" style="flex:1;height:44px;min-height:44px" onclick="window.__kardamConnectPeer && window.__kardamConnectPeer(selectedPeer?.id)">Connect</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ JOURNAL MODAL ============ -->
+<div id="journalModal" class="modal-overlay" onclick="if(event.target===this)window.__kardamCloseJournal()">
+  <div class="modal-sheet" style="max-height:88%">
+    <div class="modal-handle"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <h3 id="journalFormTitle">Journal</h3>
+      <button class="icon-btn" onclick="window.__kardamCloseJournal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <div id="journalPrivacy" class="emerg-note" style="margin-bottom:12px">
+       Your journal entries are stored only on this device. They never leave your phone. No one — not even Kardam — can read them.
+    </div>
+
+    <div id="journalList" style="display:block"></div>
+    <div id="journalEmpty" class="empty" style="display:none">
+      <div class="e-ico">📓</div>
+      <b>No entries yet</b>
+      <p>Your private thoughts, safely stored here.</p>
+    </div>
+
+    <div id="journalForm" style="display:none" class="j-form">
+      <input type="text" id="j-title" placeholder="Title (optional)"/>
+      <select id="j-mood" style="width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:14px;margin-bottom:12px">
+        <option value="">How are you feeling? (optional)</option>
+        <option>Calm</option><option>Okay</option><option>Restless</option>
+        <option>Low</option><option>Heavy</option><option>Tender</option>
+      </select>
+      <textarea id="j-content" placeholder="What's on your mind..."></textarea>
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <button class="pill pill-light" style="flex:1;height:44px;min-height:44px" onclick="window.__kardamBackToJournalList()">Cancel</button>
+        <button class="pill pill-dark" style="flex:1.5;height:44px;min-height:44px" onclick="window.__kardamSaveEntry()">Save entry</button>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <button class="pill pill-dark w-full" style="height:44px;min-height:44px" onclick="window.__kardamOpenNewEntry()">+ New entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GARDEN MODAL ============ -->
+<div id="gardenModal" class="modal-overlay" onclick="if(event.target===this)window.__kardamCloseModal('gardenModal')">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="text-align:center">
+      <div style="font-size:64px;margin-bottom:10px" id="gardenModalIco">🌱</div>
+      <h3 id="gardenModalTitle">Seed</h3>
+      <p class="muted" style="margin-top:8px;line-height:1.5" id="gardenModalMeaning">A small beginning.</p>
+      <button class="pill pill-dark" style="margin-top:16px;height:44px;min-height:44px" onclick="window.__kardamCloseModal('gardenModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"></div>
+
+</div>
+</div>
+
+<!-- Auth helpers -->
+<script>
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+}
+// Expose for inline handlers that need it before modules load
+window.showView = showView;
+</script>
+
+<!-- Init & Boot module -->
+<script type="module">
+console.log('[Module] Starting to load...');
+import { renderLanguages, saveLanguage, goWelcome, goCreate, goLogin,
+         saveName, renderTrusted, toggleTrustedForm,
+         saveTrustedNext, skipTrusted, renderPinDots, renderPinPad,
+         clearPinInput, renderLoginPin, clearLoginPin, completeOnboarding,
+         runSplash } from './js/auth.js';
+import { toast } from './js/init.js';
+import { LANGUAGES, I18N } from './js/data.js';
+console.log('[Module] Imports loaded');
+
+// Expose all auth functions to window for inline handlers
+window.__kardamSaveLang = saveLanguage;
+window.__kardamGoWelcome = goWelcome;
+window.__kardamGoCreate = goCreate;
+window.__kardamGoLogin = goLogin;
+window.__kardamSaveName = saveName;
+window.__kardamToggleTrusted = toggleTrustedForm;
+window.__kardamSaveTrusted = saveTrustedNext;
+window.__kardamSkipTrusted = skipTrusted;
+window.__kardamClearPin = clearPinInput;
+window.__kardamClearLogin = clearLoginPin;
+window.__kardamToast = toast;
+window.__kardamStartPostRegister = () => { window.showView('view-login'); renderLoginPin(); };
+
+// ============ NEW: AUTH FLOW ============
+let authMode = 'login'; // 'login' or 'register'
+
+function normalizeIndianMobile(value) {
+  let digits = String(value || '').replace(/\D/g, '');
+  if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+  else if (digits.length === 11 && digits.startsWith('0')) digits = digits.slice(1);
+  return digits;
+}
+
+window.__kardamOpenAuth = () => {
+  console.log('[OpenAuth] Called');
+  const splash = document.getElementById('splash');
+  splash.classList.add('hidden');
+  setTimeout(() => {
+    window.__kardamSwitchAuth('login');
+    // Direct DOM manipulation to show auth view
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    const authView = document.getElementById('view-auth');
+    if (authView) {
+      authView.classList.add('active');
+      console.log('[OpenAuth] view-auth shown');
+    } else {
+      console.error('[OpenAuth] view-auth not found!');
+    }
+  }, 400);
+};
+
+window.__kardamGoAuth = () => {
+  window.__kardamSwitchAuth('login');
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-auth').classList.add('active');
+};
+
+window.__kardamSwitchAuth = (mode) => {
+  authMode = mode;
+  document.getElementById('toggleLogin').classList.toggle('active', mode === 'login');
+  document.getElementById('toggleRegister').classList.toggle('active', mode === 'register');
+  document.getElementById('authLoginForm').style.display = mode === 'login' ? 'block' : 'none';
+  document.getElementById('authRegisterForm').style.display = mode === 'register' ? 'block' : 'none';
+  if (mode === 'login') {
+    document.getElementById('authHeading').textContent = 'Welcome back';
+    document.getElementById('authSubheading').textContent = 'Sign in to your private space';
+  } else {
+    document.getElementById('authHeading').textContent = 'Create account';
+    document.getElementById('authSubheading').textContent = 'Start your gentle journey with Kardam';
+  }
+};
+
+window.__kardamDoLogin = () => {
+  const mobile = normalizeIndianMobile(document.getElementById('loginMobile').value);
+  document.getElementById('loginMobile').value = mobile;
+  const password = document.getElementById('loginPassword').value.trim();
+  if (!/^\d{10}$/.test(mobile)) { toast('Enter exactly 10 digits for your mobile number'); document.getElementById('loginMobile').focus(); return; }
+  if (!password || password.length < 4) { toast('Enter your password'); return; }
+
+  // Check stored users
+  const store = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+  const users = store.authUsers || {};
+  const user = users[mobile] || Object.entries(users).map(([key, value]) => ({ key, value })).find(entry => normalizeIndianMobile(entry.value.mobile || entry.key) === mobile)?.value;
+
+  if (!user) {
+    // Demo: allow any login (create temp user)
+    toast('Account not found — demo: use any 10-digit number');
+    return;
+  }
+  if (user.password !== password) {
+    toast('Wrong password — try again');
+    return;
+  }
+
+  // Successful login
+  localStorage.setItem('kardam_v3', JSON.stringify({ ...store, currentUser: mobile, firstLaunchDone: true }));
+  toast('Welcome back, ' + user.name);
+  setTimeout(() => {
+    window.showView('view-login');
+    import('./js/auth.js').then(m => m.renderLoginPin());
+  }, 350);
+};
+
+window.__kardamDoRegister = () => {
+  const name = document.getElementById('regName').value.trim();
+  const mobile = normalizeIndianMobile(document.getElementById('regMobile').value);
+  document.getElementById('regMobile').value = mobile;
+  const password = document.getElementById('regPassword').value.trim();
+  console.log('[Register] Attempt with:', name, mobile);
+  
+  if (!name) { toast('Please enter your name'); return; }
+  if (!/^\d{10}$/.test(mobile)) { toast('Enter exactly 10 digits for your mobile number'); document.getElementById('regMobile').focus(); return; }
+  if (!password || password.length < 4) { toast('Password must be at least 4 characters'); return; }
+
+  // Save to auth users
+  const store = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+  store.authUsers = store.authUsers || {};
+  store.authUsers[mobile] = { name, mobile, password, createdAt: Date.now() };
+  store.currentUser = mobile;
+  store.lang = store.lang || 'en';
+  store.onb = { step: 0, name, mood: null, trusted: null, pin: '', pinFirst: '', pinStage: 'first', duressFirst: '' };
+  localStorage.setItem('kardam_v3', JSON.stringify(store));
+  console.log('[Register] Saved to localStorage');
+
+  // Show toast
+  if (typeof toast === 'function') toast('Account created! Let\'s set up your profile.');
+
+  // Switch to trusted contact view - direct DOM manipulation
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const trustedView = document.getElementById('view-trusted');
+  if (trustedView) {
+    trustedView.classList.add('active');
+    console.log('[Register] Switched to view-trusted');
+  } else {
+    console.error('[Register] view-trusted not found!');
+  }
+  
+  // Call renderTrusted
+  try {
+    if (typeof renderTrusted === 'function') {
+      renderTrusted();
+      console.log('[Register] renderTrusted called');
+    }
+  } catch(e) {
+    console.error('[Register] renderTrusted error:', e);
+  }
+};
+
+window.__kardamSocialLogin = (provider) => {
+  toast(provider + ' login is mock — in real app, this opens ' + provider + ' auth');
+};
+
+// ============ LANGUAGE MODAL ============
+let selectedLang = 'en';
+
+window.__kardamOpenLangModal = () => {
+  const store = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+  selectedLang = store.lang || 'en';
+  renderLangModalList();
+  document.getElementById('langModal').classList.add('open');
+};
+
+window.__kardamCloseLangModal = () => {
+  document.getElementById('langModal').classList.remove('open');
+};
+
+window.__kardamSaveLangModal = () => {
+  const store = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+  store.lang = selectedLang;
+  store.tempLang = selectedLang;
+  if (store.user) store.user.lang = selectedLang;
+  localStorage.setItem('kardam_v3', JSON.stringify(store));
+  updateLangCorner();
+  window.__kardamCloseLangModal();
+  toast('Language: ' + selectedLang.toUpperCase());
+};
+
+function renderLangModalList() {
+  const container = document.getElementById('langModalList');
+  if (!container) return;
+  container.innerHTML = '';
+  const langs = [
+    { code: 'en', name: 'English', native: 'English', flag: 'EN' },
+    { code: 'hi', name: 'Hindi', native: 'हिन्दी', flag: 'HI' },
+    { code: 'hinglish', name: 'Hinglish', native: 'Hinglish', flag: 'HG' },
+  ];
+  langs.forEach(l => {
+    const btn = document.createElement('button');
+    btn.className = 'lang-modal-item' + (selectedLang === l.code ? ' active' : '');
+    btn.innerHTML = `
+      <div class="lang-modal-ico">${l.flag}</div>
+      <div>
+        <div class="lang-modal-name">${l.native}</div>
+        <div class="lang-modal-sub">${l.name}</div>
+      </div>
+      <div class="lang-modal-dot">${selectedLang === l.code ? '✓' : ''}</div>
+    `;
+    btn.onclick = () => {
+      selectedLang = l.code;
+      renderLangModalList();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function updateLangCorner() {
+  const store = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+  const lang = (store.lang || 'en').toUpperCase();
+  const code = lang === 'HINGLISH' ? 'HG' : lang;
+  const label = document.getElementById('langCornerLabel');
+  if (label) label.textContent = code;
+  document.querySelectorAll('[data-lang-badge] span').forEach(el => { el.textContent = code; });
+}
+
+window.__kardamShowPinError = (msg) => {
+  const el = document.getElementById('pinError');
+  if (el) {
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+};
+window.__kardamHidePinError = () => {
+  const el = document.getElementById('pinError');
+  if (el) {
+    el.style.display = 'none';
+    el.textContent = '';
+  }
+};
+
+window.__kardamTogglePw = (inputId, btn) => {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  const eyeOpen = btn.querySelector('.eye-open');
+  const eyeClosed = btn.querySelector('.eye-closed');
+  if (eyeOpen && eyeClosed) {
+    eyeOpen.style.display = isPassword ? 'none' : 'block';
+    eyeClosed.style.display = isPassword ? 'block' : 'none';
+  }
+};
+
+window.__kardamOpenForgot = () => {
+  document.getElementById('forgotMobile').value = document.getElementById('loginMobile').value || '';
+  document.getElementById('forgotModal').classList.add('open');
+};
+window.__kardamCloseForgot = () => {
+  document.getElementById('forgotModal').classList.remove('open');
+};
+window.__kardamSubmitForgot = () => {
+  const mobile = document.getElementById('forgotMobile').value.trim();
+  if (!mobile || mobile.length < 10) { toast('Enter a valid mobile number'); return; }
+  window.__kardamCloseForgot();
+  toast('Reset link sent to +91 ' + mobile + ' (demo)');
+};
+
+// ============ SPLASH FLOW ============
+// Custom splash: show logo for 1.8s, then reveal Get Started button
+function runNewSplash() {
+  const logoLayer = document.getElementById('splashLogoLayer');
+  const getStartedLayer = document.getElementById('splashGetStarted');
+  const splash = document.getElementById('splash');
+
+  // Check if returning user — skip to login directly
+  const store = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+  if (store.user && store.firstLaunchDone) {
+    // Returning user — show splash briefly then PIN login
+    setTimeout(() => {
+      splash.classList.add('hidden');
+      setTimeout(() => {
+        renderLoginPin();
+        window.showView('view-login');
+      }, 400);
+    }, 1200);
+    return;
+  }
+
+  // New user flow: logo → Get Started
+  setTimeout(() => {
+    logoLayer.style.display = 'none';
+    getStartedLayer.style.display = 'flex';
+    updateLangCorner();
+  }, 2000);
+}
+
+// Wrapped PIN handler with full flow (first → confirm → duress-first → duress-confirm → complete)
+window.__handlePinWrapped = (k) => {
+  // Clear any previous error when user starts entering
+  if (k !== 'back') {
+    window.__kardamHidePinError();
+  }
+  const store = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+  const onb = store.onb || {};
+  const pin = onb.pin || '';
+  if (k === 'back') {
+    onb.pin = pin.slice(0, -1);
+    localStorage.setItem('kardam_v3', JSON.stringify({ ...store, onb }));
+    renderPinDots('pinDots', onb.pin);
+    return;
+  }
+  if (pin.length >= 4) return;
+  onb.pin = pin + k;
+  localStorage.setItem('kardam_v3', JSON.stringify({ ...store, onb }));
+  renderPinDots('pinDots', onb.pin);
+  if (onb.pin.length === 4) {
+    setTimeout(() => {
+      const s2 = JSON.parse(localStorage.getItem('kardam_v3') || '{}');
+      const o2 = s2.onb;
+      const lang = s2.lang || 'en';
+      const tr = ({ 
+        en: { 
+          setupPin: 'Create a private PIN', setupPinSub: "You'll use this to open Kardam. Only on this device.",
+          confirmPin: 'Confirm your PIN', confirmPinSub: "One more time so we know it's right.",
+          setupDuress: 'Set a Duress PIN', duressSub: 'If someone forces you to open the app, enter this PIN to show a harmless wellness screen. Keep it secret.',
+        }, 
+        hi: { 
+          setupPin: 'एक निजी PIN बनाएँ', setupPinSub: 'Kardam खोलने के लिए। केवल इस डिवाइस पर।',
+          confirmPin: 'PIN की पुष्टि करें', confirmPinSub: 'एक बार और ताकि हम सुनिश्चित कर सकें।',
+          setupDuress: 'Duress PIN सेट करें', duressSub: 'अगर कोई ज़बरदस्ती ऐप खोले, तो यह PIN डालें — एक सामान्य wellness स्क्रीन दिखेगी। इसे गुप्त रखें।',
+        }, 
+        hinglish: { 
+          setupPin: 'Ek private PIN banao', setupPinSub: 'Kardam kholne ke liye. Sirf is device par.',
+          confirmPin: 'PIN confirm karo', confirmPinSub: 'Ek baar aur — pakka ho jaye.',
+          setupDuress: 'Duress PIN set karo', duressSub: 'Agar koi zabardasti app khole, yeh PIN daalo — normal wellness screen dikhegi. Secret rakho.',
+        } 
+      }[lang] || { setupPin: 'Create a private PIN', setupPinSub: "You'll use this to open Kardam.", confirmPin: 'Confirm your PIN', confirmPinSub: 'One more time.', setupDuress: 'Set a Duress PIN', duressSub: 'Secret PIN for wellness screen.' });
+
+      if (o2.pinStage === 'first') {
+        o2.pinFirst = o2.pin; o2.pin = ''; o2.pinStage = 'confirm';
+        document.getElementById('t-pinTitle').textContent = tr.confirmPin;
+        document.getElementById('t-pinSub').textContent = tr.confirmPinSub;
+        document.getElementById('pinLabel').textContent = tr.confirmPinSub;
+        localStorage.setItem('kardam_v3', JSON.stringify({ ...s2, onb: o2 }));
+        renderPinDots('pinDots', o2.pin);
+      } else if (o2.pinStage === 'confirm') {
+        if (o2.pin !== o2.pinFirst) {
+          o2.pin = ''; o2.pinStage = 'first';
+          localStorage.setItem('kardam_v3', JSON.stringify({ ...s2, onb: o2 }));
+          renderPinDots('pinDots', o2.pin);
+          document.getElementById('t-pinTitle').textContent = tr.setupPin;
+          document.getElementById('t-pinSub').textContent = tr.setupPinSub;
+          document.getElementById('pinLabel').textContent = 'Enter 4 digits';
+          document.getElementById('pinSubNote').textContent = 'No attempt limit. If you forget, you can reset from Profile settings.';
+          window.__kardamShowPinError('The PINs don\'t match. Please try again.');
+        } else {
+          window.__kardamHidePinError();
+          o2.pin = ''; o2.pinStage = 'duress-first';
+          localStorage.setItem('kardam_v3', JSON.stringify({ ...s2, onb: o2 }));
+          document.getElementById('t-pinTitle').textContent = tr.setupDuress;
+          document.getElementById('t-pinSub').textContent = tr.duressSub;
+          document.getElementById('pinLabel').textContent = 'Enter 4 digits';
+          document.getElementById('pinSubNote').textContent = 'Choose a different PIN from your Main PIN and keep it memorable.';
+          renderPinDots('pinDots', o2.pin);
+        }
+      } else if (o2.pinStage === 'duress-first') {
+        // IMPORTANT: Duress PIN must be DIFFERENT from Main PIN
+        if (o2.pin === o2.pinFirst) {
+          o2.pin = '';
+          localStorage.setItem('kardam_v3', JSON.stringify({ ...s2, onb: o2 }));
+          renderPinDots('pinDots', o2.pin);
+          document.getElementById('pinLabel').textContent = 'Enter 4 digits';
+          document.getElementById('t-pinTitle').textContent = tr.setupDuress;
+          document.getElementById('t-pinSub').textContent = tr.duressSub;
+          document.getElementById('pinSubNote').textContent = 'Choose a different PIN from your Main PIN and keep it memorable.';
+          // Shake animation
+          document.querySelectorAll('#pinDots .pin-dot').forEach(d => {
+            d.classList.add('shake');
+            setTimeout(() => d.classList.remove('shake'), 500);
+          });
+          window.__kardamShowPinError('Your Duress PIN must be different from your Main PIN.');
+          return;
+        }
+        window.__kardamHidePinError();
+        o2.duressFirst = o2.pin; o2.pin = ''; o2.pinStage = 'duress-confirm';
+        document.getElementById('t-pinTitle').textContent = 'Confirm Duress PIN';
+        document.getElementById('t-pinSub').textContent = 'Enter it one more time to be sure.';
+        document.getElementById('pinLabel').textContent = 'Enter 4 digits';
+        localStorage.setItem('kardam_v3', JSON.stringify({ ...s2, onb: o2 }));
+        renderPinDots('pinDots', o2.pin);
+      } else if (o2.pinStage === 'duress-confirm') {
+        if (o2.pin !== o2.duressFirst) {
+          o2.pin = ''; o2.pinStage = 'duress-first';
+          localStorage.setItem('kardam_v3', JSON.stringify({ ...s2, onb: o2 }));
+          document.getElementById('t-pinTitle').textContent = tr.setupDuress;
+          document.getElementById('t-pinSub').textContent = tr.duressSub;
+          document.getElementById('pinLabel').textContent = 'Enter 4 digits';
+          window.__kardamShowPinError('The PINs don\'t match. Please try again.');
+          renderPinDots('pinDots', o2.pin);
+        } else {
+          // Save the finished setup, then show registration confirmation before requesting a PIN.
+          completeOnboarding();
+          const displayName = String(o2.name || '').trim();
+          document.getElementById('registrationSuccessName').textContent = displayName ? `, ${displayName}` : '';
+          window.showView('view-registration-done');
+        }
+      }
+    }, 250);
+  }
+};
+
+// Render initial state and run NEW splash
+renderPinDots('pinDots', '');
+renderPinDots('loginDots', '');
+
+// Render both numpads
+['pinPad', 'loginPad'].forEach(id => {
+  const c = document.getElementById(id);
+  if (!c) return;
+  c.innerHTML = '';
+  [1,2,3,4,5,6,7,8,9,'',0,'back'].forEach(k => {
+    const b = document.createElement('button');
+    if (k === '') { b.style.visibility = 'hidden'; c.appendChild(b); return; }
+    if (k === 'back') {
+      b.textContent = '⌫';
+      b.onclick = () => {
+        if (id === 'pinPad') window.__handlePinWrapped('back');
+        else renderLoginPin();
+      };
+    } else {
+      b.textContent = k;
+      if (id === 'pinPad') {
+        b.onclick = () => window.__handlePinWrapped(String(k));
+      } else {
+        b.onclick = () => {
+          import('./js/auth.js').then(m => m.handleLoginPin(String(k)));
+        };
+      }
+    }
+    c.appendChild(b);
+  });
+});
+
+// Start splash
+console.log('[Module] Starting splash...');
+runNewSplash();
+console.log('[Module] Fully loaded');
+</script>
+
+</body>
+</html>
