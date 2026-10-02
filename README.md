@@ -89,7 +89,7 @@ kardam/
 - iCall: 9152987821
 - Vandrevala Foundation: 1860-2662-345
 - Kiran (Govt. of India): 1800-599-0019
-- Snehi: 9582329090
+- BinDu : 822391XXXX
 
 ## ⚠️ Disclaimer
 
